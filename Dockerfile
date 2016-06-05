@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-MAINTAINER Alexander Trost <galexrt@googlemail.com>
+MAINTAINER Seidel Seidel <samuel@samistine.com>
 
 ENV SINUS_USER="sinusbot" \
     SINUS_GROUP="sinusbot" \
