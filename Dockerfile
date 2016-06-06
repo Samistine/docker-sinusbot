@@ -16,7 +16,7 @@ ENV SINUS_USER="sinusbot" \
 ADD entrypoint.sh /entrypoint.sh
 
 #Mount scripts
-ln -s $SINUS_DIR/data/scripts $SINUS_DIR/scripts
+RUN ln -s $SINUS_DIR/data/scripts $SINUS_DIR/scripts
 
 #Setup Base Layer
 RUN chmod 755 /entrypoint.sh && \
