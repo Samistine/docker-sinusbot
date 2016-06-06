@@ -8,12 +8,15 @@ ENV SINUS_USER="sinusbot" \
     SINUS_DATA="$SINUS_DIR/data" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
     TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64" \
-    SINUS_VERSION="0.9.8" \
+    SINUS_VERSION="0.9.12.2-58b509d" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.0.19.1" \
     TS3_OFFSET="25000"
 
 ADD entrypoint.sh /entrypoint.sh
+
+#Mount scripts
+RUN mount -o bind $SINUS_DIR/data/scripts $SINUS_DIR/scripts
 
 #Setup Base Layer
 RUN chmod 755 /entrypoint.sh && \
@@ -30,7 +33,7 @@ RUN groupadd -g 1000 -r "$SINUS_GROUP" && \
     mkdir -p "$SINUS_DIR" "$TS3_DIR"
 
 #Install/Setup SinusBot
-RUN wget -qO- http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2 | \
+RUN wget -qO- https://www.sinusbot.com/pre/sinusbot-$SINUS_VERSION.tar.bz2 | \
         tar -xjf- -C "$SINUS_DIR" && \
     wget -q -O- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" | \
         tail -c +$TS3_OFFSET | \
