@@ -21,6 +21,14 @@ chown -R 1000:1000 /data/sinusbot
 docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data -p 8087:8087 samistine/sinusbot:latest
 ```
 
+### Mount host directory - Beta Version
+```
+docker run --name sinusbot -d \
+-v /data/sinusbot:/sinusbot/data \
+-v /data/sinusbot/scripts:/sinusbot/scripts \
+-p 8087:8087 samistine/sinusbot:latest
+```
+
 ### SELinux
 If your host uses SELinux it may be necessary to use the **:z** option:
 ```
