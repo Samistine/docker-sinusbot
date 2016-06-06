@@ -18,10 +18,11 @@ ADD entrypoint.sh /entrypoint.sh
 #Setup Base Layer
 RUN chmod 755 /entrypoint.sh && \
     apt-get -q update && \
-    apt-get -q install -y locales wget sudo x11vnc xinit xvfb libxcursor1 \
+    apt-get -q install -y wget sudo x11vnc xinit xvfb libxcursor1 \
         libglib2.0-0 python bzip2 sqlite3 ca-certificates && \
     update-ca-certificates && \
-    apt-get -qq clean
+    apt-get -qq clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #Setup SinusBot User
 RUN groupadd -g 1000 -r "$SINUS_GROUP" && \
@@ -42,7 +43,6 @@ RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
     chown -fR "$SINUS_USER":"$SINUS_GROUP" "$SINUS_DIR" "$TS3_DIR" && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME ["$SINUS_DATA"]
 
