@@ -21,9 +21,6 @@ RUN chmod 755 /entrypoint.sh && \
     apt-get -q install -y locales wget sudo x11vnc xinit xvfb libxcursor1 \
         libglib2.0-0 python bzip2 sqlite3 ca-certificates && \
     update-ca-certificates && \
-    locale-gen --purge en_US.UTF-8 && \
-    echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
-    echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
     apt-get -qq clean
 
 #Setup SinusBot User
