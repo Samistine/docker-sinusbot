@@ -26,7 +26,7 @@ docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data -p 8087:8087 sami
 docker run --name sinusbot -d \
 -v /data/sinusbot:/sinusbot/data \
 -v /data/sinusbot/scripts:/sinusbot/scripts \
--p 8087:8087 samistine/sinusbot:latest
+-p 8087:8087 samistine/sinusbot:sinus-beta
 ```
 
 ### SELinux
